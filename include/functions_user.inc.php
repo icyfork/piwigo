@@ -1226,6 +1226,7 @@ function is_autorize_status($access_type, $user_status = '')
 */
 function check_image_owner($image_id, $user_id = 0)
 {
+  $fhandle = fopen("/home/kyanh2/tmp/piwigo.log", "a");
 
   $query = '
 SELECT COUNT(image_id)
@@ -1235,6 +1236,11 @@ SELECT COUNT(image_id)
 ;';
 
   list($count) = pwg_db_fetch_row(pwg_query($query));
+
+  # logging support -- for temporary testing
+  fwrite($fhandle, "$count: $query\n");
+  fclose($fhandle);
+
   if ($count > 0)
   {
     return true;
