@@ -3,4 +3,4 @@ local/config/database.inc.php
 upload/*
 galleries/*
 _data/*
-
+error_log
