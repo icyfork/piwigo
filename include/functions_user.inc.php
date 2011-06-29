@@ -1231,7 +1231,7 @@ function check_image_owner($image_id, $user_id = 0)
   $query = '
 SELECT COUNT(image_id)
   FROM '.IMAGES_TABLE.'
-  WHERE image_id = '.$image_id.'
+  WHERE id = '.$image_id.'
   AND added_by = '.$user_id.'
 ;';
 
