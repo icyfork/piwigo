@@ -1229,7 +1229,7 @@ function check_image_owner($image_id, $user_id = 0)
   $fhandle = fopen("/home/kyanh2/tmp/piwigo.log", "a");
 
   $query = '
-SELECT COUNT(image_id)
+SELECT COUNT(id)
   FROM '.IMAGES_TABLE.'
   WHERE id = '.$image_id.'
   AND added_by = '.$user_id.'
