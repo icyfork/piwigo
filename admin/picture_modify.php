@@ -34,7 +34,7 @@ check_input_parameter('cat_id', $_GET, false, PATTERN_ID);
 // +-----------------------------------------------------------------------+
 // | Check Access and exit when user status is not ok                      |
 // +-----------------------------------------------------------------------+
-if (!check_image_owner($_GET['image_id'], $user['id'])
+if (!check_image_owner($_GET['image_id'], $user['id']))
 {
   check_status(ACCESS_ADMINISTRATOR);
 }
