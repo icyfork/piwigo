@@ -73,7 +73,7 @@ where upper('.$conf['user_fields']['email'].') = upper(\''.$mail_address.'\')
 function validate_login_case($login)
 {
   global $conf;
-  
+
   if (defined("PHPWG_INSTALLED"))
   {
     $query = "
@@ -322,9 +322,9 @@ SELECT
     if (pwg_db_fetch_row(pwg_query($query))!=1)
     {
       create_user_infos($user_id);
-    
+
       $result = pwg_query($user_info_query);
-      $user_infos_row = pwg_db_fetch_assoc($result);      
+      $user_infos_row = pwg_db_fetch_assoc($result);
     }
   }
 
@@ -873,7 +873,7 @@ function get_default_theme()
   {
     return $theme;
   }
-  
+
   // let's find the first available theme
   $active_themes = get_pwg_themes();
   foreach (array_keys(get_pwg_themes()) as $theme_id)
@@ -1218,6 +1218,34 @@ function is_autorize_status($access_type, $user_status = '')
 }
 
 /*
+ * Check if the current image is editable by the current user. The input
+ * data $image_id and $user_id must be validated befored being used here.
+ * @return bool
+ * @author icy
+ *
+*/
+function check_image_owner($image_id, $user_id = 0)
+{
+
+  $query = '
+SELECT COUNT(image_id)
+  FROM '.IMAGE_TABLE.'
+  WHERE image_id = '.$image_id.'
+  AND added_by = '.$user_id.'
+;';
+
+  list($count) = pwg_db_fetch_row(pwg_query($query));
+  if ($count > 0)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
+/*
  * Check if user have access to access_type definition
  * Stop action if there are not access
  * Test does with user status
@@ -1293,12 +1321,12 @@ function is_adviser()
 function can_manage_comment($action, $comment_author_id)
 {
   global $user, $conf;
-  
+
   if (is_a_guest())
   {
     return false;
   }
-  
+
   if (!in_array($action, array('delete','edit', 'validate')))
   {
     return false;

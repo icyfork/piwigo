@@ -28,13 +28,16 @@ if(!defined("PHPWG_ROOT_PATH"))
 
 include_once(PHPWG_ROOT_PATH.'admin/include/functions.php');
 
+check_input_parameter('image_id', $_GET, false, PATTERN_ID);
+check_input_parameter('cat_id', $_GET, false, PATTERN_ID);
+
 // +-----------------------------------------------------------------------+
 // | Check Access and exit when user status is not ok                      |
 // +-----------------------------------------------------------------------+
-check_status(ACCESS_ADMINISTRATOR);
-
-check_input_parameter('image_id', $_GET, false, PATTERN_ID);
-check_input_parameter('cat_id', $_GET, false, PATTERN_ID);
+if (!check_image_owner($_GET['image_id'], $user['id'])
+{
+  check_status(ACCESS_ADMINISTRATOR);
+}
 
 // +-----------------------------------------------------------------------+
 // |                             delete photo                              |
@@ -73,7 +76,7 @@ SELECT category_id
     array_from_query($query, 'category_id'),
     explode(',', calculate_permissions($user['id'], $user['status']))
     );
-  
+
   foreach ($authorizeds as $category_id)
   {
     redirect(
