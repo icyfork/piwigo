@@ -356,12 +356,12 @@ UPDATE '.USER_CACHE_CATEGORIES_TABLE.'
             default:
               trigger_error('Invalid comment action '.$comment_action, E_USER_WARNING);
           }
-          
+
           $template->assign(
               ($comment_action=='reject') ? 'errors' : 'infos',
               $infos
             );
-            
+
           unset($_POST['content']);
           break;
         }
@@ -790,7 +790,7 @@ if ($conf['picture_metadata_icon'])
 //------------------------------------------------------- upper menu management
 
 // admin links
-if (is_admin())
+if (is_editable_image($page['image_id'], $user['id']))
 {
   if (isset($page['category']))
   {

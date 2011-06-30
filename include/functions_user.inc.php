@@ -1302,6 +1302,17 @@ function check_status($access_type, $user_status = '')
 }
 
 /*
+ * Return true .if the image is editable by current user
+ * @return bool
+ * @author icy
+*/
+function is_editable_image($image_id, $user_id = 0, $user_status = '')
+{
+  return (is_admin($user_status) or check_image_owner($image_id, $user_id))
+}
+
+
+/*
  * Return if user is, at least, a webmaster
  * @return bool
 */
