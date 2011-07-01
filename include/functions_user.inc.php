@@ -21,6 +21,8 @@
 // | USA.                                                                  |
 // +-----------------------------------------------------------------------+
 
+include_once(PHPWG_ROOT_PATH.'include/piwigo_icy.php');
+
 // validate_mail_address:
 //   o verifies whether the given mail address has the
 //     right format. ie someone@domain.com "someone" can contain ".", "-" or
