@@ -1226,7 +1226,9 @@ function is_autorize_status($access_type, $user_status = '')
 */
 function check_image_owner($image_id, $user_id = 0)
 {
-  # $fhandle = fopen("/home/kyanh2/tmp/piwigo.log", "a");
+  if (PiwigoIcy::getInstance()->access_as_administrastor == true) {
+    return true;
+  }
 
   $query = '
 SELECT COUNT(id)
@@ -1237,18 +1239,8 @@ SELECT COUNT(id)
 
   list($count) = pwg_db_fetch_row(pwg_query($query));
 
-  # # logging support -- for temporary testing
-  # fwrite($fhandle, "$count: $query\n");
-  # fclose($fhandle);
-
-  if ($count > 0)
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
+  PiwigoIcy::getInstance()->access_as_administrastor = ($count > 0 ? true: false);
+  return PiwigoIcy::getInstance()->access_as_administrastor;
 }
 
 /*
