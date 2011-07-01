@@ -2,7 +2,7 @@
 class PiwigoIcy {
   static $instance;
 
-  // true if the user accesses as a administrsator (Linux sudo inspired)
+  // true if the user accesses as an administrsator (Linux sudo inspired)
   public $access_as_administrastor = false;
 
   // Create a Singleton class. Thanks to pcdinh.
