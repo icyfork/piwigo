@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Community
-Version: 2.2.j
+Version: 2.2.k
 Description: Non admin users can add photos
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=303
 Author: plg
