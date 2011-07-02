@@ -27,7 +27,6 @@ if(!defined("PHPWG_ROOT_PATH"))
 }
 
 include_once(PHPWG_ROOT_PATH.'admin/include/functions.php');
-include_once(PHPWG_ROOT_PATH.'include/piwigo_icy.php');
 
 check_input_parameter('image_id', $_GET, false, PATTERN_ID);
 check_input_parameter('cat_id', $_GET, false, PATTERN_ID);
