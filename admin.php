@@ -28,7 +28,6 @@
 define('PHPWG_ROOT_PATH','./');
 define('IN_ADMIN', true);
 
-include_once(PHPWG_ROOT_PATH.'include/piwigo_icy.php');
 include_once(PHPWG_ROOT_PATH.'include/common.inc.php');
 include_once(PHPWG_ROOT_PATH.'admin/include/functions.php');
 include_once(PHPWG_ROOT_PATH.'admin/include/functions_plugins.inc.php');
@@ -44,10 +43,12 @@ if (isset($_GET['page'])
 {
   check_input_parameter('image_id', $_GET, false, PATTERN_ID);
   check_input_parameter('cat_id', $_GET, false, PATTERN_ID);
-  check_image_owner($_GET['image_id'], $user['id']);
+  if (!check_image_owner($_GET['image_id'], $user['id']))
+  {
+    check_status(ACCESS_ADMINISTRATOR);
+  }
 }
-
-if (!PiwigoIcy::getInstance()->access_as_administrastor)
+else
 {
   check_status(ACCESS_ADMINISTRATOR);
 }

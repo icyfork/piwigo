@@ -21,8 +21,6 @@
 // | USA.                                                                  |
 // +-----------------------------------------------------------------------+
 
-include_once(PHPWG_ROOT_PATH.'include/piwigo_icy.php');
-
 // validate_mail_address:
 //   o verifies whether the given mail address has the
 //     right format. ie someone@domain.com "someone" can contain ".", "-" or
@@ -1228,10 +1226,6 @@ function is_autorize_status($access_type, $user_status = '')
 */
 function check_image_owner($image_id, $user_id = 0)
 {
-  if (PiwigoIcy::getInstance()->access_as_administrastor == true) {
-    return true;
-  }
-
   $query = '
 SELECT COUNT(id)
   FROM '.IMAGES_TABLE.'
@@ -1241,8 +1235,7 @@ SELECT COUNT(id)
 
   list($count) = pwg_db_fetch_row(pwg_query($query));
 
-  PiwigoIcy::getInstance()->access_as_administrastor = ($count > 0 ? true: false);
-  return PiwigoIcy::getInstance()->access_as_administrastor;
+  return ($count > 0 ? true: false);
 }
 
 /*

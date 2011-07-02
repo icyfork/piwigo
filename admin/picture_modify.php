@@ -36,8 +36,7 @@ check_input_parameter('cat_id', $_GET, false, PATTERN_ID);
 // | Check Access and exit when user status is not ok                      |
 // +-----------------------------------------------------------------------+
 
-check_image_owner($_GET['image_id'], $user['id']);
-if (!PiwigoIcy::getInstance()->access_as_administrastor)
+if (!check_image_owner($_GET['image_id'], $user['id']))
 {
   check_status(ACCESS_ADMINISTRATOR);
 }
