@@ -38,21 +38,7 @@ trigger_action('loc_begin_admin');
 // | Check Access and exit when user status is not ok                      |
 // +-----------------------------------------------------------------------+
 
-if (isset($_GET['page'])
-    and ($_GET['page'] == "picture_modify"))
-{
-  check_input_parameter('image_id', $_GET, false, PATTERN_ID);
-  check_input_parameter('cat_id', $_GET, false, PATTERN_ID);
-  if (!check_image_owner($_GET['image_id'], $user['id']))
-  {
-    check_status(ACCESS_ADMINISTRATOR);
-  }
-}
-else
-{
-  check_status(ACCESS_ADMINISTRATOR);
-}
-
+check_status(ACCESS_ADMINISTRATOR);
 
 // +-----------------------------------------------------------------------+
 // | Direct actions                                                        |

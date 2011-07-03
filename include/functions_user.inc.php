@@ -1218,27 +1218,6 @@ function is_autorize_status($access_type, $user_status = '')
 }
 
 /*
- * Check if the current image is editable by the current user. The input
- * data $image_id and $user_id must be validated befored being used here.
- * @return bool
- * @author icy
- *
-*/
-function check_image_owner($image_id, $user_id = 0)
-{
-  $query = '
-SELECT COUNT(id)
-  FROM '.IMAGES_TABLE.'
-  WHERE id = '.$image_id.'
-  AND added_by = '.$user_id.'
-;';
-
-  list($count) = pwg_db_fetch_row(pwg_query($query));
-
-  return ($count > 0 ? true: false);
-}
-
-/*
  * Check if user have access to access_type definition
  * Stop action if there are not access
  * Test does with user status
@@ -1287,17 +1266,6 @@ function check_status($access_type, $user_status = '')
 {
   return is_autorize_status(ACCESS_ADMINISTRATOR, $user_status);
 }
-
-/*
- * Return true .if the image is editable by current user
- * @return bool
- * @author icy
-*/
-function is_editable_image($image_id, $user_id = 0, $user_status = '')
-{
-  return (is_admin($user_status) or check_image_owner($image_id, $user_id));
-}
-
 
 /*
  * Return if user is, at least, a webmaster

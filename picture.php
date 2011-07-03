@@ -790,7 +790,7 @@ if ($conf['picture_metadata_icon'])
 //------------------------------------------------------- upper menu management
 
 // admin links
-if (is_editable_image($page['image_id'], $user['id']))
+if (is_admin())
 {
   if (isset($page['category']))
   {
