@@ -1,0 +1,3 @@
+[submodule "plugins/icy_picture_modify"]
+	path = plugins/icy_picture_modify
+	url = git://github.com/icy/icy_picture_modify.git
